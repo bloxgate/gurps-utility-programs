@@ -32,5 +32,5 @@ jobs:
       with:
         name: travelcalc
         path: |
-          travelcalc.exe
-          stars.dat
+          space-travel-time-calculator/travelcalc.exe
+          space-travel-time-calculator/stars.dat
