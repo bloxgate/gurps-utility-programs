@@ -1,0 +1,32 @@
+name: Build Space Travel Time Calculator
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+    - 'space-travel-time-calculator/**/*'
+  pull_request:
+    branches: [ master ]
+    paths:
+    - 'space-travel-time-calculator/**/*' 
+
+jobs:
+  windows:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: change directory
+      run: cd space-travel-time-calculator
+    - name: install dependencies
+      run: go get fyne.io/fyne/v2
+    - name: make
+      run: make
+    - name: upload artifacts
+      uses: actions/upload-artifact@v2
+      if: ${{ github.event_name == 'push' }}
+      with:
+        name: travelcalc
+        path: |
+          travelcalc.exe
+          stars.dat
