@@ -25,8 +25,13 @@ const (
 	Red
 )
 
+var (
+	//StarTypeStrings is a list of star classifications for the colors in the data file's pallete setting
+	StarTypeStrings []string = []string{"Yellow (G)", "Orange (K)", "Blue-White (F)", "T Dwarf", "Blue (A/B/O)", "L Dwarf", "Red Dwarf (M)"}
+)
+
 func (s StarType) String() string {
-	return [...]string{"Yellow (G)", "Orange (K)", "Blue-White (F)", "T Dwarf", "Blue (A/B/O)", "L Dwarf", "Red Dwarf (M)"}[s]
+	return StarTypeStrings[s]
 }
 
 // Star represents a star on the galaxy map
@@ -39,7 +44,7 @@ type Star struct {
 }
 
 // Distance calculates the distance to destination in parsecs
-func (origin Star) Distance(destination Star) float64 {
+func (origin Star) Distance(destination *Star) float64 {
 
 	fmt.Printf("Orig %v\n", origin)
 	fmt.Printf("Dest %v\n", destination)
