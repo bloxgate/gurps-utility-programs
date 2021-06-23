@@ -22,8 +22,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: install dependencies
-      run: go get fyne.io/fyne/v2
     - name: make
       run: make
     - name: upload artifacts
