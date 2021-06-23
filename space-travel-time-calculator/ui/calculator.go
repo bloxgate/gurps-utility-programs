@@ -25,13 +25,16 @@ func CreateCalculatorTab(starNames []string, galaxy []*astronomy.Star, userStar 
 	travelTimeValue := widget.NewLabel("")
 
 	originDrop := widget.NewSelect(starNames, func(changed string) {
-		for _, s := range galaxy {
-			if changed == "User Star" {
-				origin = userStar
-			} else if s.Name == strings.ReplaceAll(changed, " ", "_") {
-				origin = s
-				log.Printf("Origin set to %s\n", s.Name)
-				break
+		if changed == "User Star" {
+			origin = userStar
+			log.Println("Origin set to user input")
+		} else {
+			for _, s := range galaxy {
+				if s.Name == strings.ReplaceAll(changed, " ", "_") {
+					origin = s
+					log.Printf("Origin set to %s\n", s.Name)
+					break
+				}
 			}
 		}
 		travelTimeValue.Text = ""
@@ -40,13 +43,16 @@ func CreateCalculatorTab(starNames []string, galaxy []*astronomy.Star, userStar 
 		distValue.Refresh()
 	})
 	destDrop := widget.NewSelect(starNames, func(changed string) {
-		for _, s := range galaxy {
-			if changed == "User Star" {
-				dest = userStar
-			} else if s.Name == strings.ReplaceAll(changed, " ", "_") {
-				dest = s
-				log.Printf("Destination set to %s\n", s.Name)
-				break
+		if changed == "User Star" {
+			dest = userStar
+			log.Println("Destination set to user input")
+		} else {
+			for _, s := range galaxy {
+				if s.Name == strings.ReplaceAll(changed, " ", "_") {
+					dest = s
+					log.Printf("Destination set to %s\n", s.Name)
+					break
+				}
 			}
 		}
 		travelTimeValue.Text = ""
