@@ -1,0 +1,33 @@
+name: Build Space Travel Time Calculator
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+    - 'explosion-calc/**/*'
+    - '.github/workflows/explosion-calc.yml'
+  pull_request:
+    branches: [ master ]
+    paths:
+    - 'explosion-calc/**/*'
+    - '.github/workflows/explosion-calc.yml' 
+
+jobs:
+  windows:
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        working-directory: ./explosion-calc
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: make
+      run: make
+    - name: upload artifacts
+      uses: actions/upload-artifact@v2
+      if: ${{ github.event_name == 'push' }}
+      with:
+        name: travelcalc
+        path: |
+          explosion-calc/explosioncalc.exe
