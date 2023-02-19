@@ -28,6 +28,6 @@ jobs:
       uses: actions/upload-artifact@v2
       if: ${{ github.event_name == 'push' }}
       with:
-        name: travelcalc
+        name: explosioncalc
         path: |
           explosion-calc/explosioncalc.exe
